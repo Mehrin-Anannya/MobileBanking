@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mobile Banking System</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <!-- Bootstrap Fontawesome-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+<div style="height:540px;" class="">
+    <nav class=" nav navbar navbar-dark blue darken-4 justify-content-center">
+        <a class="h4 text-white">Mobile Banking System</a>
+    </nav>
+    <div class="container">
+        <br/>
+        <div class="shadow-lg p-2 blue darken-1 rounded" style="max-width: 2000px;">
+            <div class="card" style="max-width: 1095px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4 teal lighten-5">
+                        <nav class="navbar navbar-expand-lg navbar-dark">
+                            <div class="container">
+                                <nav class="nav nav-pills flex-column">
+                                    <a class="nav-link active" href="#/home">Home</a>
+                                    <a class="nav-link" href="#openanaccount">Open An Account</a>
+                                    <a class="nav-link" href="#viewaccounts">View Accounts</a>
+                                    <a class="nav-link" href="#addmoney">Add Money</a>
+                                    <a class="nav-link" href="#checkbalance">Check Balance</a>
+                                    <a class="nav-link" href="#transfermoney">Transfer Money</a>
+                                    <a class="nav-link" href="#withdrawmoney">Withdraw Money</a>
+                                </nav>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title h4">View All Accounts</h5>
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">BANK_ACCOUNT_ID</th>
+                                    <th scope="col">ACCOUNT_NUMBER</th>
+                                    <th scope="col">ACCOUNT_NAME</th>
+                                    <th scope="col">MOBILE_PHONE_NUMBER</th>
+                                    <th scope="col">ACCOUNT_TYPE_ID</th>
+                                    <th scope="col">BALANCE</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="account: ${viewAllBankAccounts}">
+                                    <th scope="row" th:text="${account.bankAccountId}"></th>
+                                    <td th:text="${account.accountNumber}"></td>
+                                    <td th:text="${account.accountName}"></td>
+                                    <td th:text="${account.mobilePhoneNumber}"></td>
+                                    <td th:text="${account.accountTypeId}"></td>
+                                    <td th:text="${account.balance}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>  </body>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mobile Banking System</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <!-- Bootstrap Fontawesome-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Angular -->
+    <script src="https://code.angularjs.org/1.6.9/angular.js"></script>
+    <script src="https://code.angularjs.org/1.6.9/angular-route.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    &lt;!&ndash;<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-resource.js"></script>&ndash;&gt;-->
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.min.js"></script>
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>  </body>
+
+    <!-- Including the app.js and route.js  -->
+    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/route.js"></script>
+
+    <!-- Including controllers -->
+    <script type="text/javascript" src="app/controllers/home.js"></script>
+    <script type="text/javascript" src="app/controllers/openanaccount.js"></script>
+    <script type="text/javascript" src="app/controllers/viewaccounts.js"></script>
+    <script type="text/javascript" src="app/controllers/addmoney.js"></script>
+    <script type="text/javascript" src="app/controllers/checkbalance.js"></script>
+    <script type="text/javascript" src="app/controllers/transfermoney.js"></script>
+    <script type="text/javascript" src="app/controllers/withdrawmoney.js"></script>
+    <script type="text/javascript" src="app/controllers/pagenotfound.js"></script>
+    <!--<script>
+        $(function(){
+            $("#Contenttoinclude").load("app/templates/home.html");
+        });
+    </script>-->
+</head>
+<body ng-app="myapp">
+    <div style="height:540px;" class="">
+        <nav class=" nav navbar navbar-dark blue darken-4 justify-content-center">
+            <a class="h4 text-white">Mobile Banking System</a>
+        </nav>
+        <div class="container">
+            <br/>
+            <div class="container">
+                <div class="container">
+                    <div class="shadow-lg p-2 blue darken-1 rounded">
+                        <div class="card" style="max-width: 1095px;">
+                            <div class="row no-gutters">
+                                <div class="col-md-4 teal lighten-5">
+                                    <nav class="navbar navbar-expand-lg navbar-dark">
+                                        <div class="container">
+                                            <nav class="nav nav-pills flex-column">
+                                                <a class="nav-link " href="#home">Home</a>
+                                                <a class="nav-link active" href="#openanaccount">Open An Account</a>
+                                                <a class="nav-link" href="#viewaccounts">View Accounts</a>
+                                                <a class="nav-link" href="#addmoney">Add Money</a>
+                                                <a class="nav-link" href="#checkbalance">Check Balance</a>
+                                                <a class="nav-link" href="#transfermoney">Transfer Money</a>
+                                                <a class="nav-link" href="#withdrawmoney">Withdraw Money</a>
+                                                <a class="nav-link" href="#">{{message}}</a>
+                                            </nav>
+                                        </div>
+                                    </nav>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <div ng-view>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  <script type="text/javascript" src="app/templates/home.html"></script>-->
+            <!--<div ui-view="homeview"></div>
+             <div ui-view="content"></div>
+             <div id="Contenttoinclude"></div>-->
+        </div>
+    </div>
+</body>
+</html>
+<!--
+<h5 class="card-title h4">Open An Account</h5>
+<p class="card-text">Account opening.</p>&ndash;&gt;
+-->
