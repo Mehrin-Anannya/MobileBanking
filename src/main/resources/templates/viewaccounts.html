@@ -17,43 +17,42 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 <body>
-<div style="height:540px;" class="">
+<div style="height:540px;">
     <nav class=" nav navbar navbar-dark blue darken-4 justify-content-center">
         <a class="h4 text-white">Mobile Banking System</a>
     </nav>
     <div class="container">
         <br/>
-        <div class="shadow-lg p-2 blue darken-1 rounded" style="max-width: 2000px;">
-            <div class="card" style="max-width: 1095px;">
+        <div class="shadow-lg p-2 blue darken-1 rounded mx-auto" style="width: 1200px;">
+            <div class="card mx-auto">
                 <div class="row no-gutters">
-                    <div class="col-md-4 teal lighten-5">
+                    <div class="col-md-3 teal lighten-5">
                         <nav class="navbar navbar-expand-lg navbar-dark">
                             <div class="container">
                                 <nav class="nav nav-pills flex-column">
-                                    <a class="nav-link active" href="#/home">Home</a>
-                                    <a class="nav-link" href="#openanaccount">Open An Account</a>
-                                    <a class="nav-link" href="#viewaccounts">View Accounts</a>
-                                    <a class="nav-link" href="#addmoney">Add Money</a>
-                                    <a class="nav-link" href="#checkbalance">Check Balance</a>
-                                    <a class="nav-link" href="#transfermoney">Transfer Money</a>
-                                    <a class="nav-link" href="#withdrawmoney">Withdraw Money</a>
+                                    <a class="nav-link" href="#/home">Home</a>
+                                    <!--<a class="nav-link" th:href="">Open An Account</a>-->
+                                    <a class="nav-link active" th:href="@{/viewAllBankAccounts}">View Accounts</a>
+                                   <!-- <a class="nav-link" th:href="@{/addmoney}">Add Money</a>-->
+                                    <a class="nav-link" th:href="@{/callCheckBalancePage}">Check Balance</a>
+                                    <!--<a class="nav-link" th:href="@{/transfermoney}">Transfer Money</a>
+                                    <a class="nav-link" th:href="@{/withdrawmoney}">Withdraw Money</a>-->
                                 </nav>
                             </div>
                         </nav>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                         <div class="card-body">
                             <h5 class="card-title h4">View All Accounts</h5>
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">BANK_ACCOUNT_ID</th>
-                                    <th scope="col">ACCOUNT_NUMBER</th>
-                                    <th scope="col">ACCOUNT_NAME</th>
-                                    <th scope="col">MOBILE_PHONE_NUMBER</th>
-                                    <th scope="col">ACCOUNT_TYPE_ID</th>
-                                    <th scope="col">BALANCE</th>
+                                    <th scope="col"><b>#</b></th>
+                                    <th scope="col"><b>ACCOUNT NUMBER</b></th>
+                                    <th scope="col"><b>ACCOUNT NAME</b></th>
+                                    <th scope="col"><b>MOBILE PHONE NUMBER</b></th>
+                                    <th scope="col"><b>ACCOUNT TYPE</b></th>
+                                    <th scope="col"><b>BALANCE</b></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -62,7 +61,7 @@
                                     <td th:text="${account.accountNumber}"></td>
                                     <td th:text="${account.accountName}"></td>
                                     <td th:text="${account.mobilePhoneNumber}"></td>
-                                    <td th:text="${account.accountTypeId}"></td>
+                                    <td th:text="${account.accountTypeId} == 1 ? 'Personal' : 'Business'" ></td>
                                     <td th:text="${account.balance}"></td>
                                 </tr>
                                 </tbody>
@@ -73,7 +72,7 @@
             </div>
         </div>
     </div>
-
+</div>
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->

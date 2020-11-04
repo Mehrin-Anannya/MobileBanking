@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -26,8 +28,7 @@ public class BankAccountController {
     }
 
     @GetMapping("/viewAllBankAccounts")
-    public String getAllBankAccountInfo(Model model)
-    {
+    public String getAllBankAccountInfo(Model model) {
         model.addAttribute("viewAllBankAccounts", bankAccountService.getAllBankAccount());
         return "viewaccounts";
     }
@@ -42,8 +43,15 @@ public class BankAccountController {
         return bankAccountService.getBankAccountByAccountNumber(accountNumber);
     }
 
-    @GetMapping(value = "/checkBalance/{mobilePhoneNumber}")
-    public BankAccount getBankAccountByAccountNumber(@PathVariable(value = "mobilePhoneNumber")String mobilePhoneNumber){
-        return bankAccountService.checkBalanceWithMPN(mobilePhoneNumber);
+    @GetMapping(value = "/callCheckBalancePage")
+    public String getCheckBalancePage(Model model){
+        model.addAttribute("bankAccount", new BankAccount());
+        return "checkbalance";
+    }
+
+    @PostMapping(value = "/checkBalance")
+    public String getBankAccountByAccountNumber(@ModelAttribute("bankAccount") BankAccount bankAccount, Model model){
+        model.addAttribute("bankAccount", bankAccountService.checkBalanceWithMPN(bankAccount.getMobilePhoneNumber()));
+        return "checkbalance";
     }
 }

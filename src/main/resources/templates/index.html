@@ -26,22 +26,22 @@
                 <div class="shadow-lg p-2 blue darken-1 rounded">
                     <div class="card" style="max-width: 1095px;">
                         <div class="row no-gutters">
-                            <div class="col-md-4 teal lighten-5">
+                            <div class="col-md-3 teal lighten-5">
                                 <nav class="navbar navbar-expand-lg navbar-dark">
                                     <div class="container">
                                         <nav class="nav nav-pills flex-column">
-                                            <a class="nav-link active" href="#">Home</a>
-                                            <a class="nav-link" th:href="">Open An Account</a>
+                                            <a class="nav-link active" href="#/home">Home</a>
+                                            <a class="nav-link" href="">Open An Account</a>
                                             <a class="nav-link" th:href="@{/viewAllBankAccounts}">View Accounts</a>
-                                            <a class="nav-link" th:href="#addmoney">Add Money</a>
-                                            <a class="nav-link" th:href="#checkbalance">Check Balance</a>
-                                            <a class="nav-link" th:href="#transfermoney">Transfer Money</a>
-                                            <a class="nav-link" th:href="#withdrawmoney">Withdraw Money</a>
+                                            <a class="nav-link" href="#addmoney">Add Money</a>
+                                            <a class="nav-link" th:href="@{/callCheckBalancePage}">Check Balance</a>
+                                            <a class="nav-link" href="#transfermoney">Transfer Money</a>
+                                            <a class="nav-link" href="#withdrawmoney">Withdraw Money</a>
                                         </nav>
                                     </div>
                                 </nav>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-9">
                                 <div class="card-body">
                                     <h5 class="card-title h4">Home</h5>
                                     <p class="card-text">A mobile banking solution for the bank officers' use.</p>
@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </div>
-
+        </div>
         <!-- JQuery -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- Bootstrap tooltips -->
