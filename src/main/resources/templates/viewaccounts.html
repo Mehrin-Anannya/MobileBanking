@@ -23,7 +23,7 @@
     </nav>
     <div class="container">
         <br/>
-        <div class="shadow-lg p-2 blue darken-1 rounded mx-auto" style="width: 1200px;">
+        <div class="shadow-lg p-2 blue darken-1 rounded mx-auto" style="width: 1100px;">
             <div class="card mx-auto">
                 <div class="row no-gutters">
                     <div class="col-md-3 teal lighten-5">
@@ -31,9 +31,9 @@
                             <div class="container">
                                 <nav class="nav nav-pills flex-column">
                                     <a class="nav-link" href="#/home">Home</a>
-                                    <!--<a class="nav-link" th:href="">Open An Account</a>-->
+                                    <a class="nav-link" th:href="@{/ceateAnAccountPage}">Open An Account</a>
                                     <a class="nav-link active" th:href="@{/viewAllBankAccounts}">View Accounts</a>
-                                   <!-- <a class="nav-link" th:href="@{/addmoney}">Add Money</a>-->
+                                    <a class="nav-link" th:href="@{/addmoney}">Add Money</a>
                                     <a class="nav-link" th:href="@{/callCheckBalancePage}">Check Balance</a>
                                     <!--<a class="nav-link" th:href="@{/transfermoney}">Transfer Money</a>
                                     <a class="nav-link" th:href="@{/withdrawmoney}">Withdraw Money</a>-->
@@ -50,7 +50,6 @@
                                     <th scope="col"><b>#</b></th>
                                     <th scope="col"><b>ACCOUNT NUMBER</b></th>
                                     <th scope="col"><b>ACCOUNT NAME</b></th>
-                                    <th scope="col"><b>MOBILE PHONE NUMBER</b></th>
                                     <th scope="col"><b>ACCOUNT TYPE</b></th>
                                     <th scope="col"><b>BALANCE</b></th>
                                 </tr>
@@ -60,9 +59,8 @@
                                     <th scope="row" th:text="${account.bankAccountId}"></th>
                                     <td th:text="${account.accountNumber}"></td>
                                     <td th:text="${account.accountName}"></td>
-                                    <td th:text="${account.mobilePhoneNumber}"></td>
-                                    <td th:text="${account.accountTypeId} == 1 ? 'Personal' : 'Business'" ></td>
-                                    <td th:text="${account.balance}"></td>
+                                    <td th:text="${account.accountType.accountTypeName}" ></td>
+                                    <td th:text="${account.balance}" ></td>
                                 </tr>
                                 </tbody>
                             </table>

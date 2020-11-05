@@ -1,10 +1,12 @@
 package com.progotisystemsltd.assigment.mobilebanking.service;
 
-import com.progotisystemsltd.assigment.mobilebanking.model.BankAccount;
-import com.progotisystemsltd.assigment.mobilebanking.repository.AccountNumberRepository;
+import com.progotisystemsltd.assigment.mobilebanking.model.*;
+import com.progotisystemsltd.assigment.mobilebanking.repository.AccountTypeRepository;
 import com.progotisystemsltd.assigment.mobilebanking.repository.BankAccountRepository;
+import com.progotisystemsltd.assigment.mobilebanking.repository.BusinessAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
@@ -14,11 +16,37 @@ public class BankAccountServiceImpl implements BankAccountService{
     private BankAccountRepository bankAccountRepository;
 
     @Autowired
-    private AccountNumberRepository accountNumberRepository;
+    private AccountTypeRepository accountTypeRepository;
+
+    @Autowired
+    private BusinessAccountRepository businessAccountRepository;
 
     @Override
-    public void createBankAccount(BankAccount bankAccount) {
-        bankAccountRepository.save(bankAccount);
+    public String createBankAccount(BankAccountInfo bankAccountInfo, Model model) {
+        String message;
+        BankAccount bankAccount;
+        AccountType accountType;
+        //Check whether there is already an account with the given mobile phone number
+        bankAccount = bankAccountRepository.findBankAccountByMobilePhoneNumber(bankAccountInfo.getBankAccount().getMobilePhoneNumber());
+        //Create New Bank Account
+        if(bankAccount == null) {
+            accountType = accountTypeRepository.findAccountTypeByAccountTypeName(AccountTypeNames.BUSINESS.name());
+            //Create Business Account Entry
+            if (bankAccountInfo.getBankAccount().getAccountType().getAccountTypeId() == accountType.getAccountTypeId()){
+                BusinessAccount businessAccountInfo = bankAccountInfo.getBusinessAccountInfo();
+                businessAccountInfo.setBankAccount(bankAccountInfo.getBankAccount());
+                businessAccountRepository.save(businessAccountInfo);
+            }else{
+                //Create New Bank Account with Account Type 'Personal'
+                bankAccountRepository.save(bankAccountInfo.getBankAccount());
+            }
+            bankAccount = bankAccountRepository.findBankAccountByMobilePhoneNumber(bankAccountInfo.getBankAccount().getMobilePhoneNumber());
+            message = "Account opened successfully. Your Account Number is:" +bankAccount.getAccountNumber();
+        }else {
+            message = "Already have an account with this mobile number";
+        }
+        model.addAttribute("message", message);
+        return message;
     }
 
     @Override
@@ -38,7 +66,23 @@ public class BankAccountServiceImpl implements BankAccountService{
 
     @Override
     public BankAccount checkBalanceWithMPN(String mobilePhoneNumber) {
-        return bankAccountRepository.findBalanceByMobilePhoneNumber(mobilePhoneNumber);
+        return bankAccountRepository.findBankAccountByMobilePhoneNumber(mobilePhoneNumber);
     }
-
+    @Override
+    public BankAccount updateBankAccount(BankAccount bankAccount){
+        BankAccount bankAccountInfo;
+        try {
+            bankAccountInfo = bankAccountRepository.findBankAccountByMobilePhoneNumber(bankAccount.getMobilePhoneNumber());
+            AccountType accountType = accountTypeRepository.findAccountTypeByAccountTypeName(AccountTypeNames.PERSONAL.name());
+            if(bankAccountInfo.getAccountNumber() !=null && bankAccountInfo.getAccountType().getAccountTypeId()== accountType.getAccountTypeId()){
+                bankAccountInfo.setBalance(bankAccountInfo.getBalance() + bankAccount.getBalance());
+                bankAccountRepository.save(bankAccountInfo);
+            }
+            return bankAccountInfo;
+        }
+        catch (Exception e){
+            bankAccountInfo = new BankAccount();
+            return bankAccountInfo;
+        }
+    }
 }

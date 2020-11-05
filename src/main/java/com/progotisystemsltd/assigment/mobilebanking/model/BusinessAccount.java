@@ -1,36 +1,46 @@
 package com.progotisystemsltd.assigment.mobilebanking.model;
 
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="BUSINESS_ACCOUNT_INFO")
-public class BusinessAccountInfo implements Serializable {
+@Table(name="BUSINESS_ACCOUNT")
+public class BusinessAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "BUSINESS_ACCOUNT_INFO_ID")
-    private Integer businessAccountInfoId;
-    @Column(name = "ACCOUNT_NUMBER")
-    private Long accountNumber;
+    @Column(name = "BUSINESS_ACCOUNT_ID")
+    private Integer businessAccountId;
+
+    @OneToOne(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ACCOUNT_NUMBER")
+    BankAccount bankAccount;
+
     @Column(name = "TRADE_LICENSE_NUMBER")
     private Long tradeLicenseNumber;
+
     @Column(name = "TAX_IDENTIFICATION_NUMBER")
     private Long taxIdentificationNumber;
 
-    public Integer getBusinessAccountInfoId() {
-        return businessAccountInfoId;
+    public BusinessAccount() {
+
     }
 
-    public void setBusinessAccountInfoId(Integer businessAccountInfoId) {
-        this.businessAccountInfoId = businessAccountInfoId;
+    public Integer getBusinessAccountId() {
+        return businessAccountId;
     }
 
-    public Long getAccountNumber() {
-        return accountNumber;
+    public void setBusinessAccountId(Integer businessAccountId) {
+        this.businessAccountId = businessAccountId;
     }
 
-    public void setAccountNumber(Long accountNumber) {
-        this.accountNumber = accountNumber;
+    public BankAccount getBankAccount() {
+        return bankAccount;
+    }
+
+    public void setBankAccount(BankAccount bankAccount) {
+        this.bankAccount = bankAccount;
     }
 
     public Long getTradeLicenseNumber() {
