@@ -15,6 +15,23 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
     <!-- Bootstrap Fontawesome-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <script th:inline="javascript">
+        $(document).ready(function(){
+             $(".alert").delay(4000).slideUp(200, function() {
+                $(this).alert('close');
+                $("#message").val("");
+            });
+        });
+    </script>
 </head>
 <body>
 <div style="height:540px;" class="">
@@ -30,12 +47,12 @@
                         <nav class="navbar navbar-expand-lg navbar-dark">
                             <div class="container">
                                 <nav class="nav nav-pills flex-column">
-                                    <a class="nav-link" href="#/home">Home</a>
-                                    <a class="nav-link" th:href="@{/ceateAnAccountPage}">Open An Account</a>
+                                    <a class="nav-link" th:href="@{/}">Home</a>
+                                    <a class="nav-link" th:href="@{/createAnAccountPage}">Open An Account</a>
                                     <a class="nav-link" th:href="@{/viewAllBankAccounts}">View Accounts</a>
                                     <a class="nav-link" th:href="@{/addMoneyPage}">Add Money</a>
                                     <a class="nav-link active" th:href="@{/checkBalancePage}">Check Balance</a>
-                                    <a class="nav-link" href="#transfermoney">Transfer Money</a>
+                                    <a class="nav-link" th:href="@{/transferMoneyPage}">Transfer Money</a>
                                     <a class="nav-link" href="#withdrawmoney">Withdraw Money</a>
                                 </nav>
                             </div>
@@ -47,12 +64,14 @@
                             <p class="card-text">
                                 <form action="#" th:action="@{/checkBalance}" th:object="${bankAccount}" method="post">
                                     <div class="row">
+                                        <div class="alert alert-success" id="message" role="alert" th:if="${checkBalanceMessage != null}" th:text="${checkBalanceMessage}"></div>
                                         <div class="col-md-9">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="basic-addon1"><b>Mobile Number</b></span>
                                                 </div>
-                                                <input type="text" class="form-control" id="basic-url-1" th:field="*{mobilePhoneNumber}" aria-describedby="basic-addon1">
+                                                <input type="text" class="form-control" id="basic-url-1" th:field="*{mobilePhoneNumber}" aria-describedby="basic-addon1"
+                                                       required pattern="[+]{1}[8]{1}[8]{1}[0]{1}[1]{1}-[0-9]{9}" autocomplete="on">
                                             </div>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
@@ -74,13 +93,5 @@
         </div>
     </div>
 </div>
-<!-- JQuery -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>  </body>
 </body>
 </html>

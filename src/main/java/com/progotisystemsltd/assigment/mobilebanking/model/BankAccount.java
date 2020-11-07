@@ -1,23 +1,18 @@
 package com.progotisystemsltd.assigment.mobilebanking.model;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
-
 import javax.persistence.*;
-
+import java.io.Serializable;
 
 @Entity
-@SequenceGenerator(sequenceName = "hibernate_seq", initialValue = 1, allocationSize = 1000000000, name="seq")
 @Table(name = "BANK_ACCOUNT")
-public class BankAccount{
+public class BankAccount implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BANK_ACCOUNT_ID")
     private Integer bankAccountId;
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hibernate_seq")
     @Column(name = "ACCOUNT_NUMBER")
-    private Long accountNumber;
+    private String accountNumber;
 
     @Column(name = "ACCOUNT_NAME", nullable = false)
     private String accountName;
@@ -43,11 +38,11 @@ public class BankAccount{
         this.bankAccountId = bankAccountId;
     }
 
-    public Long getAccountNumber() {
+    public String getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(Long accountNumber) {
+    public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
 
@@ -83,12 +78,4 @@ public class BankAccount{
         this.balance = balance;
     }
 
-    public BankAccount(Integer bankAccountId, Long accountNumber, String accountName, String mobilePhoneNumber, AccountType accountType, Double balance) {
-        this.bankAccountId = bankAccountId;
-        this.accountNumber = accountNumber;
-        this.accountName = accountName;
-        this.mobilePhoneNumber = mobilePhoneNumber;
-        this.accountType = accountType;
-        this.balance = balance;
-    }
-}
+ }

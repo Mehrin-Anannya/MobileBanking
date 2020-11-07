@@ -1,7 +1,7 @@
 package com.progotisystemsltd.assigment.mobilebanking.model;
 
 public class BankAccountInfo {
-    private  BankAccount bankAccount;
+    private BankAccount bankAccount;
     private BusinessAccount businessAccountInfo;
 
     public BankAccount getBankAccount() {

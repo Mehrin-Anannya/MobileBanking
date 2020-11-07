@@ -1,10 +1,11 @@
 package com.progotisystemsltd.assigment.mobilebanking.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "ACCOUNT_TYPE")
-public class AccountType {
+public class AccountType implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ACCOUNT_TYPE_ID")

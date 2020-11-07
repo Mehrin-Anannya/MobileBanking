@@ -30,13 +30,13 @@
                         <nav class="navbar navbar-expand-lg navbar-dark">
                             <div class="container">
                                 <nav class="nav nav-pills flex-column">
-                                    <a class="nav-link" href="#/home">Home</a>
-                                    <a class="nav-link" th:href="@{/ceateAnAccountPage}">Open An Account</a>
+                                    <a class="nav-link" th:href="@{/}">Home</a>
+                                    <a class="nav-link" th:href="@{/createAnAccountPage}">Open An Account</a>
                                     <a class="nav-link active" th:href="@{/viewAllBankAccounts}">View Accounts</a>
-                                    <a class="nav-link" th:href="@{/addmoney}">Add Money</a>
-                                    <a class="nav-link" th:href="@{/callCheckBalancePage}">Check Balance</a>
-                                    <!--<a class="nav-link" th:href="@{/transfermoney}">Transfer Money</a>
-                                    <a class="nav-link" th:href="@{/withdrawmoney}">Withdraw Money</a>-->
+                                    <a class="nav-link" th:href="@{/addMoneyPage}">Add Money</a>
+                                    <a class="nav-link" th:href="@{/checkBalancePage}">Check Balance</a>
+                                    <a class="nav-link" th:href="@{/transferMoneyPage}">Transfer Money</a>
+                                   <!-- <a class="nav-link" th:href="@{/withdrawmoney}">Withdraw Money</a>&ndash;&gt;-->
                                 </nav>
                             </div>
                         </nav>
@@ -60,7 +60,7 @@
                                     <td th:text="${account.accountNumber}"></td>
                                     <td th:text="${account.accountName}"></td>
                                     <td th:text="${account.accountType.accountTypeName}" ></td>
-                                    <td th:text="${account.balance}" ></td>
+                                    <td th:text="${account.balance} == null ? 'N/A': ${account.balance}"></td>
                                 </tr>
                                 </tbody>
                             </table>

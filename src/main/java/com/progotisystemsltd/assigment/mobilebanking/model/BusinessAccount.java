@@ -7,14 +7,14 @@ import java.io.Serializable;
 
 @Entity
 @Table(name="BUSINESS_ACCOUNT")
-public class BusinessAccount {
+public class BusinessAccount implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BUSINESS_ACCOUNT_ID")
     private Integer businessAccountId;
 
-    @OneToOne(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ACCOUNT_NUMBER")
+    @OneToOne(fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "BANK_ACCOUNT_ID")
     BankAccount bankAccount;
 
     @Column(name = "TRADE_LICENSE_NUMBER")

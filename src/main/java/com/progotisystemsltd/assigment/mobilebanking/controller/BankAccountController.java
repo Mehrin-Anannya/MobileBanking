@@ -2,6 +2,7 @@ package com.progotisystemsltd.assigment.mobilebanking.controller;
 
 import com.progotisystemsltd.assigment.mobilebanking.model.BankAccount;
 import com.progotisystemsltd.assigment.mobilebanking.model.BankAccountInfo;
+import com.progotisystemsltd.assigment.mobilebanking.model.TransferMoney;
 import com.progotisystemsltd.assigment.mobilebanking.service.BankAccountServiceImpl;
 import com.progotisystemsltd.assigment.mobilebanking.service.BusinessAccountServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class BankAccountController {
     }
 
     //set bank account as a model attribute to pre-populate the form
-    @GetMapping(value = "/ceateAnAccountPage")
+    @GetMapping(value = "/createAnAccountPage")
     public String showCreateAnAccountPage(Model model){
         model.addAttribute("banKAccountInfo", new BankAccountInfo());
         return "openanaccount";
@@ -50,18 +51,18 @@ public class BankAccountController {
 
     @GetMapping(value = "/addMoneyPage")
     public String showAddMoneyPage(Model model){
-        model.addAttribute("bankAccount", new BankAccount());
+        BankAccount bankAccount = new BankAccount();
+        model.addAttribute("bankAccount", bankAccount);
         return "addmoney";
     }
 
     @PostMapping(value = "/addMoney")
     public String addMoneyToBankAccount(@ModelAttribute("bankAccount")BankAccount bankAccount, Model model) throws Exception{
-        String mobileNumber = bankAccount.getMobilePhoneNumber();
-        bankAccount = bankAccountService.updateBankAccount(bankAccount);
-        //When account doesn't exists
-        if(bankAccount.getMobilePhoneNumber() == null)
-            bankAccount.setMobilePhoneNumber(mobileNumber);
-        model.addAttribute("bankAccount", bankAccount);
+        String message;
+        message = bankAccountService.updateBankAccount(bankAccount);
+        //When bank account doesn't exists
+        model.addAttribute("bankAccount", new BankAccount());
+        model.addAttribute("addMoneyMessage", message);
         return "addMoney";
     }
 
@@ -73,12 +74,36 @@ public class BankAccountController {
 
     @PostMapping(value = "/checkBalance")
     public String getCheckBalanceByMPN(@ModelAttribute("bankAccount") BankAccount bankAccount, Model model){
-        model.addAttribute("bankAccount", bankAccountService.checkBalanceWithMPN(bankAccount.getMobilePhoneNumber()));
+        String checkBalanceMessage = "";
+        bankAccount = bankAccountService.checkBalanceWithMPN(bankAccount.getMobilePhoneNumber());
+        //When there is no bank account with this mobile number
+        if(bankAccount == null){
+            checkBalanceMessage = "Sorry, account not available with this number";
+            model.addAttribute("checkBalanceMessage",  checkBalanceMessage);
+            model.addAttribute("bankAccount",  new BankAccount());
+        }
+        model.addAttribute("bankAccount", bankAccount);
         return "checkbalance";
     }
 
-    @GetMapping(value = "/bankAccountId/{bankAccountId}")
-    public BankAccount getBankAccountById(@PathVariable(value = "bankAccountId")Integer bankAccountId){
-        return bankAccountService.getBankAccountById(bankAccountId);
+    @GetMapping(value = "/transferMoneyPage")
+    public String showTransferMoneyPage(Model model){
+        model.addAttribute("transferMoney", new TransferMoney());
+        return "transfermoney";
+    }
+
+    @PostMapping(value = "/transferMoney")
+    public String transferMoney(@ModelAttribute("transferMoney") TransferMoney transferMoney, Model model){
+        String transferMoneyMessage ="";
+        transferMoneyMessage = bankAccountService.getTransferMoney(transferMoney);
+        model.addAttribute("transferMoneyMessage", transferMoneyMessage);
+        model.addAttribute("transferMoney", new TransferMoney());
+        return "transfermoney";
+    }
+
+    @GetMapping(value = "/withdrawMoneyPage")
+    public String showWithdrawMoneyPage(Model model){
+        model.addAttribute("transferMoney", new TransferMoney());
+        return "transfermoney";
     }
 }

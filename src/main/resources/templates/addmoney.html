@@ -15,6 +15,22 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
     <!-- Bootstrap Fontawesome-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+    <script th:inline="javascript">
+        $(document).ready(function(){
+                $(".alert").delay(4000).slideUp(200, function() {
+                $(this).alert('close');
+                $("#message").val("");
+            });
+        });
+    </script>
 </head>
 <body>
 <div style="height:540px;" class="">
@@ -30,12 +46,12 @@
                         <nav class="navbar navbar-expand-lg navbar-dark">
                             <div class="container">
                                 <nav class="nav nav-pills flex-column">
-                                    <a class="nav-link" href="#/home">Home</a>
-                                    <a class="nav-link" th:href="@{/ceateAnAccountPage}">Open An Account</a>
+                                    <a class="nav-link" th:href="@{/}">Home</a>
+                                    <a class="nav-link" th:href="@{/createAnAccountPage}">Open An Account</a>
                                     <a class="nav-link" th:href="@{/viewAllBankAccounts}">View Accounts</a>
                                     <a class="nav-link active" th:href="@{/addMoneyPage}">Add Money</a>
                                     <a class="nav-link" th:href="@{/checkBalancePage}">Check Balance</a>
-                                    <a class="nav-link" href="#transfermoney">Transfer Money</a>
+                                    <a class="nav-link" th:href="@{/transferMoneyPage}">Transfer Money</a>
                                     <a class="nav-link" href="#withdrawmoney">Withdraw Money</a>
                                 </nav>
                             </div>
@@ -46,6 +62,7 @@
                             <h5 class="card-title h4">Add Money</h5>
                             <p class="card-text">
                             <form action="#" th:action="@{/addMoney}" th:object="${bankAccount}" method="post">
+                            <div class="alert alert-success" id="message" role="alert" th:if="${addMoneyMessage != null}" th:text="${addMoneyMessage}"></div>
                                 <div class="row">
                                     <div class="col-md-9">
                                         <div class="input-group mb-3">
@@ -54,17 +71,12 @@
                                             </div>
                                             <input type="text" class="form-control" id="basic-url-1" required th:field="*{mobilePhoneNumber}" aria-describedby="basic-addon1">
                                         </div>
-                                        <div class="input-group mb-3" th:if="*{accountType.accountTypeId != 2}">
+                                        <div class="input-group mb-3"> <!--th:if="*{accountType !=null and accountType.accountTypeId != 2}"-->
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon2"><b>Amount</b></span>
                                             </div>
-                                            <input type="number" class="form-control" id="basic-url-3" required aria-describedby="basic-addon2" th:field="*{balance}"
-                                                   th:readonly="*{accountType.accountTypeId == 2 or (accountType.accountTypeId eq null and mobilePhoneNumber != null) }" th:max="50000">
-                                        </div>
-                                        <div>
-                                            <span th:if="*{accountType.accountTypeId == 2}">Sorry, you cannot add money to your business account.</span>
-                                            <span th:if="*{accountType.accountTypeId == 1}">Amount added successfully in the account number: <b><span th:text="*{accountNumber}">.</span></b></span>
-                                            <span th:if="*{accountType.accountTypeId eq null and mobilePhoneNumber != null}">The account doesn't exist.</span>
+                                            <input type="number" class="form-control" id="basic-url-3" required aria-describedby="basic-addon2" th:field="*{balance}" th:max="50000">
+                                                   <!--th:readonly="*{accountType !=null and accountType.accountTypeId == 2 or (accountType.accountTypeId eq null and mobilePhoneNumber != null) }"-->
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -80,13 +92,5 @@
         </div>
     </div>
 </div>
-<!-- JQuery -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>  </body>
 </body>
 </html>

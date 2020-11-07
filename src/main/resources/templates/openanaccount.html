@@ -55,12 +55,12 @@
                             <nav class="navbar navbar-expand-lg navbar-dark">
                                 <div class="container">
                                     <nav class="nav nav-pills flex-column">
-                                        <a class="nav-link" href="#/home">Home</a>
-                                        <a class="nav-link active" th:href="@{/ceateAnAccountPage}">Open An Account</a>
+                                        <a class="nav-link" th:href="@{/}">Home</a>
+                                        <a class="nav-link active" th:href="@{/createAnAccountPage}">Open An Account</a>
                                         <a class="nav-link" th:href="@{/viewAllBankAccounts}">View Accounts</a>
                                         <a class="nav-link" th:href="@{/addMoneyPage}">Add Money</a>
                                         <a class="nav-link" th:href="@{/checkBalancePage}">Check Balance</a>
-                                        <a class="nav-link" href="#transfermoney">Transfer Money</a>
+                                        <a class="nav-link" th:href="@{/transferMoneyPage}">Transfer Money</a>
                                         <a class="nav-link" href="#withdrawmoney">Withdraw Money</a>
                                     </nav>
                                 </div>
@@ -86,9 +86,9 @@
                                         <div class="col-md-6">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="basic-addon2"><b>Mobile Number</b></span>
+                                                    <span class="input-group-text" id="basic-addon3"><b>Mobile Number</b></span>
                                                 </div>
-                                                <input type="text" class="form-control" id="basic-url-2" aria-describedby="basic-addon1" th:field="*{bankAccount.mobilePhoneNumber}"
+                                                <input type="text" class="form-control" id="basic-url-3" aria-describedby="basic-addon1" th:field="*{bankAccount.mobilePhoneNumber}"
                                                              placeholder="+8801-711111111" required pattern="[+]{1}[8]{1}[8]{1}[0]{1}[1]{1}-[0-9]{9}" autocomplete="off">
                                             </div>
                                         </div>
@@ -126,9 +126,9 @@
                                             <div class="col-md-6">
                                                 <div class="input-group mb-6">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="basic-addon3" ><b>Trade License Number</b></span>
+                                                        <span class="input-group-text" id="basic-addon4" ><b>Trade License Number</b></span>
                                                     </div>
-                                                    <input type="number" class="form-control" id="basic-url-3" aria-describedby="basic-addon2"
+                                                    <input type="number" class="form-control" id="basic-url-4" aria-describedby="basic-addon2"
                                                            th:field="*{businessAccountInfo.tradeLicenseNumber}">
 
                                                 </div>
@@ -136,9 +136,9 @@
                                             <div class="col-md-6">
                                                 <div class="input-group mb-6">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="basic-addon4"><b>Tax Identification Number</b></span>
+                                                        <span class="input-group-text" id="basic-addon5"><b>Tax Identification Number</b></span>
                                                     </div>
-                                                    <input type="number" class="form-control" id="basic-url-4" aria-describedby="basic-addon2"
+                                                    <input type="number" class="form-control" id="basic-url-5" aria-describedby="basic-addon2"
                                                             th:field="*{businessAccountInfo.taxIdentificationNumber}">
                                                 </div>
                                             </div>
