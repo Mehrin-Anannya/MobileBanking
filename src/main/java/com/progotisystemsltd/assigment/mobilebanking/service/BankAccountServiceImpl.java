@@ -136,28 +136,27 @@ public class BankAccountServiceImpl implements BankAccountService {
     @Override
     public String getWithdrawMoney(BankAccount drawMoney) {
         String withdrawMoneyMessage = "";
-        BankAccount bankAccount = new BankAccount();
+        BankAccount bankAccount;
         bankAccount = bankAccountRepository.findBankAccountByAccountNumber(drawMoney.getAccountNumber());
         if (bankAccount == null) {
             withdrawMoneyMessage = "The account doesn't exist. ";
-        } else if (bankAccount.getBalance() == null) {
-            withdrawMoneyMessage = "Money cannot be withdrawn because your balance is zero.";
-        }//There should be minimum balance of 1000 to withdraw money
-        else if ((bankAccount.getBalance() - drawMoney.getBalance()) > 1000) {
-            //For withdraw amount less than or equal to 5000 with 1.5% charge calculation
-            if (drawMoney.getBalance() <= 5000) {
-                bankAccount.setBalance(bankAccount.getBalance() - ((drawMoney.getBalance() * 1.5) / 100));
-                bankAccountRepository.save(bankAccount);
-            }//For withdraw amount greater than 5000 with 100 tk charge calculation
-            else{
-                bankAccount.setBalance(bankAccount.getBalance() - drawMoney.getBalance() - 100);
-                bankAccountRepository.save(bankAccount);
-            }
+        } else if (bankAccount.getBalance() == 0.0) {
+            withdrawMoneyMessage = "Money cannot be withdrawn because your current balance is 0/.";
+        }//There should be minimum balance 0 to withdraw money
+        //For withdraw amount less than or equal to 5000 with 1.5% charge calculation
+        else if (drawMoney.getBalance()<=5000 && (bankAccount.getBalance() - drawMoney.getBalance()-((drawMoney.getBalance() * 1.5) / 100)) >= 0) {
+            bankAccount.setBalance(bankAccount.getBalance() - drawMoney.getBalance() - ((drawMoney.getBalance() * 1.5) / 100));
+            bankAccountRepository.save(bankAccount);
             withdrawMoneyMessage = "Money withdrawn successfully";
-        }else{
-            withdrawMoneyMessage = "Sorry, money cannot be withdrawn. It exceeds your minimum balance";
-        }
-
+        }else if(drawMoney.getBalance() > 5000 && (bankAccount.getBalance() - drawMoney.getBalance() - 100) >= 0) {
+            //For withdraw amount greater than 5000 with 100 tk charge calculation
+            bankAccount.setBalance(bankAccount.getBalance() - drawMoney.getBalance() - 100);
+            bankAccountRepository.save(bankAccount);
+            withdrawMoneyMessage = "Money withdrawn successfully";
+            } //To prevent minimum balance from being negative
+            else{
+            withdrawMoneyMessage = "Sorry, money cannot be withdrawn. It exceeds your minimum balance Tk. 0.";
+            }
         return withdrawMoneyMessage;
     }
 }
