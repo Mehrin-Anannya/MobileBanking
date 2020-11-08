@@ -4,13 +4,11 @@ import com.progotisystemsltd.assigment.mobilebanking.model.BankAccount;
 import com.progotisystemsltd.assigment.mobilebanking.model.BankAccountInfo;
 import com.progotisystemsltd.assigment.mobilebanking.model.TransferMoney;
 import com.progotisystemsltd.assigment.mobilebanking.service.BankAccountServiceImpl;
-import com.progotisystemsltd.assigment.mobilebanking.service.BusinessAccountServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -18,9 +16,6 @@ public class BankAccountController {
 
     @Autowired
     private BankAccountServiceImpl bankAccountService;
-
-    @Autowired
-    private BusinessAccountServiceImpl businessAccountInfoService;
 
     @GetMapping("/")
     public String viewIndexPage(Model model) {
@@ -103,7 +98,16 @@ public class BankAccountController {
 
     @GetMapping(value = "/withdrawMoneyPage")
     public String showWithdrawMoneyPage(Model model){
-        model.addAttribute("transferMoney", new TransferMoney());
-        return "transfermoney";
+        model.addAttribute("bankAccount", new BankAccount());
+        return "withdrawmoney";
+    }
+
+    @PostMapping(value = "/withdrawMoney")
+    public String withdrawMoney(@ModelAttribute("bankAccount") BankAccount bankAccount, Model model){
+        String withdrawMoneyMessage ="";
+        withdrawMoneyMessage = bankAccountService.getWithdrawMoney(bankAccount);
+        model.addAttribute("withdrawMoneyMessage", withdrawMoneyMessage);
+        model.addAttribute("bankAccount", new BankAccount());
+        return "withdrawmoney";
     }
 }

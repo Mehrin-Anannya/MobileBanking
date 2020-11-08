@@ -53,7 +53,7 @@
                                     <a class="nav-link" th:href="@{/addMoneyPage}">Add Money</a>
                                     <a class="nav-link" th:href="@{/checkBalancePage}">Check Balance</a>
                                     <a class="nav-link active" th:href="@{/transferMoneyPage}">Transfer Money</a>
-                                    <a class="nav-link" href="#withdrawmoney">Withdraw Money</a>
+                                    <a class="nav-link" th:href="@{/withdrawMoneyPage}">Withdraw Money</a>
                                 </nav>
                             </div>
                         </nav>
@@ -65,39 +65,45 @@
                             <form action="#" th:action="@{/transferMoney}" th:object="${transferMoney}" method="post">
                                 <div class="row">
                                     <div class="alert alert-success" id="message" role="alert" th:if="${transferMoneyMessage != null}" th:text="${transferMoneyMessage}"></div>
-
-                                    <div class="col-md-6">
+                                </div>
+                                 <div class="row">
+                                    <div class="col-md-9">
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1"><b>Sender's Account Number</b></span>
                                             </div>
                                             <input type="text" class="form-control" id="basic-url-1" aria-describedby="basic-addon1"
-                                                   required th:field="*{senderBankAccount.accountNumber}"
-                                                   pattern="[0-1]{4}-[0-9]{2}[0-9]{8}" autocomplete="on">
+                                                   required th:field="*{senderBankAccount.accountNumber}" placeholder="0000-0000000000"
+                                                   pattern="[0-1]{4}-[0-9]{2}[0-9]{8}">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                 </div>
+                                <div class="row">
+                                    <div class="col-md-9">
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon2"><b>Receiver's Account Number</b></span>
                                             </div>
                                             <input type="text" class="form-control" id="basic-url-2" aria-describedby="basic-addon1"
-                                                   required th:field="*{receiverBankAccount.accountNumber}"
-                                                   pattern="[0-1]{4}-[0-9]{2}[0-9]{8}" autocomplete="on">
+                                                   required th:field="*{receiverBankAccount.accountNumber}" placeholder="0000-0000000000"
+                                                   pattern="[0-1]{4}-[0-9]{2}[0-9]{8}">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9">
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon3"><b>Amount</b></span>
                                             </div>
-                                            <input type="number" class="form-control" id="basic-url-3" aria-describedby="basic-addon1" th:field="*{transferAmount}" th:max="25000">
+                                            <input type="number" class="form-control" id="basic-url-3" aria-describedby="basic-addon1" th:field="*{transferAmount}" required th:max="25000"
+                                                   placeholder="You can send minimum 500 and maximum 25000" th:min="500">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-success btn-sm pull-right"><b>Send</b></button>
+                                    <button type="submit" class="btn btn-success btn-sm pull-right"><b>Transfer</b></button>
                                 </div>
                             </form>
                             </p>

@@ -61,7 +61,7 @@
                                         <a class="nav-link" th:href="@{/addMoneyPage}">Add Money</a>
                                         <a class="nav-link" th:href="@{/checkBalancePage}">Check Balance</a>
                                         <a class="nav-link" th:href="@{/transferMoneyPage}">Transfer Money</a>
-                                        <a class="nav-link" href="#withdrawmoney">Withdraw Money</a>
+                                        <a class="nav-link" th:href="@{/withdrawMoneyPage}">Withdraw Money</a>
                                     </nav>
                                 </div>
                             </nav>
@@ -73,7 +73,8 @@
                                 <form action="#" th:action="@{/createAnAccount}" th:object="${banKAccountInfo}" method="post">
                                     <div class="row">
                                         <div class="alert alert-success" id="message" role="alert" th:if="${message != null}" th:text="${message}"></div>
-
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-6">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
@@ -89,7 +90,7 @@
                                                     <span class="input-group-text" id="basic-addon3"><b>Mobile Number</b></span>
                                                 </div>
                                                 <input type="text" class="form-control" id="basic-url-3" aria-describedby="basic-addon1" th:field="*{bankAccount.mobilePhoneNumber}"
-                                                             placeholder="+8801-711111111" required pattern="[+]{1}[8]{1}[8]{1}[0]{1}[1]{1}-[0-9]{9}" autocomplete="off">
+                                                       required placeholder="01711-111111" pattern="[0]{1}[1]{1}[0-9]{3}-[0-9]{6}">
                                             </div>
                                         </div>
                                     </div>
@@ -130,7 +131,6 @@
                                                     </div>
                                                     <input type="number" class="form-control" id="basic-url-4" aria-describedby="basic-addon2"
                                                            th:field="*{businessAccountInfo.tradeLicenseNumber}">
-
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -145,7 +145,7 @@
                                         </div>
                                    </div>
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-success btn-sm pull-right"><b>Save</b></button>
+                                        <button type="submit" class="btn btn-success pull-right"><i class="fas fa-save"></i>  <b>Create</b></button>
                                     </div>
                                 </form>
                                 </p>

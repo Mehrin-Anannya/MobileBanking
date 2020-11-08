@@ -25,7 +25,7 @@ public class BankAccount implements Serializable {
     private AccountType accountType;
 
     @Column(name = "BALANCE")
-    private Double balance;
+    private Double balance = 0.0;
 
     public BankAccount() {
     }

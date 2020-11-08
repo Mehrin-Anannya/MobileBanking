@@ -13,4 +13,5 @@ public interface BankAccountService {
   public String getTransferMoney(TransferMoney transferMoney);
   public BankAccount checkBalanceWithMPN(String mobilePhoneNumber);
   public String updateBankAccount(BankAccount bankAccount);
+  public String getWithdrawMoney(BankAccount drawMoney);
 }

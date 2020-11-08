@@ -53,7 +53,7 @@
                                     <a class="nav-link" th:href="@{/addMoneyPage}">Add Money</a>
                                     <a class="nav-link active" th:href="@{/checkBalancePage}">Check Balance</a>
                                     <a class="nav-link" th:href="@{/transferMoneyPage}">Transfer Money</a>
-                                    <a class="nav-link" href="#withdrawmoney">Withdraw Money</a>
+                                    <a class="nav-link" th:href="@{/withdrawMoneyPage}">Withdraw Money</a>
                                 </nav>
                             </div>
                         </nav>
@@ -71,7 +71,7 @@
                                                     <span class="input-group-text" id="basic-addon1"><b>Mobile Number</b></span>
                                                 </div>
                                                 <input type="text" class="form-control" id="basic-url-1" th:field="*{mobilePhoneNumber}" aria-describedby="basic-addon1"
-                                                       required pattern="[+]{1}[8]{1}[8]{1}[0]{1}[1]{1}-[0-9]{9}" autocomplete="on">
+                                                       required placeholder="01711-111111" pattern="[0]{1}[1]{1}[0-9]{3}-[0-9]{6}">
                                             </div>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
