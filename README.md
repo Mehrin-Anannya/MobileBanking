@@ -1,4 +1,4 @@
-# MobileBankingDevelopment Overview:
+# Mobile Banking Development
 
 Environment Setup:
 To run the project from the IDE.
