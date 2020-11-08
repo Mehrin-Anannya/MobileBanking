@@ -8,12 +8,16 @@ To run the project from the IDE.
 4th Step: In the browser type http://localhost:8080.
 The application will be ready to use.
            or
+           
+           
 To run the project using jar
 1st Step: Keep the jar in a location.
 2nd Step: Double click the mobilebanking.jar.
 3rd Step: In the browser type http://localhost:8080.
 The application will be ready to use.
           or
+          
+          
 To run the project using jar
 1st Step: Keep the jar in a location
 2nd Step: From the command prompt change your directory to the jar location
