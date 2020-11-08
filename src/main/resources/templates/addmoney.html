@@ -62,28 +62,29 @@
                             <h5 class="card-title h4">Add Money</h5>
                             <p class="card-text">
                             <form action="#" th:action="@{/addMoney}" th:object="${bankAccount}" method="post">
-                            <div class="alert alert-success" id="message" role="alert" th:if="${addMoneyMessage != null}" th:text="${addMoneyMessage}"></div>
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon1"><b>Mobile Number</b></span>
+                                <div class="alert alert-success" id="message" role="alert" th:if="${addMoneyMessage != null}" th:text="${addMoneyMessage}"></div>
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1"><b>Mobile Number</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" id="basic-url-1" th:field="*{mobilePhoneNumber}" required
+                                                       aria-describedby="basic-addon1" placeholder="01711-111111" pattern="[0]{1}[1]{1}[0-9]{3}-[0-9]{6}">
                                             </div>
-                                            <input type="text" class="form-control" id="basic-url-1" th:field="*{mobilePhoneNumber}" required
-                                                   aria-describedby="basic-addon1" placeholder="01711-111111" pattern="[0]{1}[1]{1}[0-9]{3}-[0-9]{6}">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon2"><b>Amount</b></span>
+                                                </div>
+                                                <input type="number" th:step="0.0001" class="form-control" id="basic-url-3" required aria-describedby="basic-addon2"
+                                                       th:field="*{balance}" th:min= "200" th:max="50000">
+                                            </div>
                                         </div>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon2"><b>Amount</b></span>
-                                            </div>
-                                            <input type="number" th:step="0.0001" class="form-control" id="basic-url-3" required aria-describedby="basic-addon2" th:field="*{balance}" th:min= "200" th:max="50000">
+                                        <div class="col-md-3">
+                                            <button type="submit" class="btn btn-primary">Add Money</button>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <button type="submit" class="btn btn-primary">Add Money</button>
-                                    </div>
-                                </div>
-                            </form>
+                             </form>
                             </p>
                         </div>
                     </div>

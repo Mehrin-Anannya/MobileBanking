@@ -52,13 +52,13 @@ public class BankAccountController {
     }
 
     @PostMapping(value = "/addMoney")
-    public String addMoneyToBankAccount(@ModelAttribute("bankAccount")BankAccount bankAccount, Model model) throws Exception{
+    public String addMoneyToBankAccount(@ModelAttribute("bankAccount")BankAccount bankAccount, Model model){
         String message;
         message = bankAccountService.updateBankAccount(bankAccount);
         //When bank account doesn't exists
         model.addAttribute("bankAccount", new BankAccount());
         model.addAttribute("addMoneyMessage", message);
-        return "addMoney";
+        return "addmoney";
     }
 
     @GetMapping(value = "/checkBalancePage")
